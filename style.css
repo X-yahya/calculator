@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Noto+Sans:wght@500&family=Roboto+Mono:wght@500&display=swap');
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #16161a;
+    color: #fffffe;
+}
+
+
+.calculator 
+{
+    background: #72757e;
+    border: 1px solid white; 
+    height: 600px;
+    width: 500px;
+    margin: 100px auto;
+    border-radius: 10px;
+
+}
+.calculator button
+{
+    background-color: #16161a;
+    color: #fffffe;
+}
+.calculator button:hover
+{
+    background-color: #010101;
+    color: whitesmoke;
+    transition: ease 0.7s;
+
+}
+
+.display
+{
+    background-color: #fffffe;
+    border: 2px solid black;
+    color: #010101;
+    padding: 10px;
+    margin: 10px;
+    text-align: right;
+    font-weight: bold;
+    height: 110px;
+    border-radius: 10px;
+}
+.container
+{   
+    display: flex;
+    height: 600px;
+    flex-wrap: nowrap;
+}
+.left 
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 1px solid white; */
+    width: 420px;
+    height: 450px;
+}
+.left .cols
+{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    /* border: 1px solid white; */
+    height: 50%;
+}
+.left button
+{
+    border-radius: 5px;
+    color: white;
+    
+    font-size: bolder;
+    border: 2px solid white;
+    /* background-color: #3da9fc; */
+    width:20%;
+    height: 50%;
+}
+
+.top
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 80px;
+    padding-right: 5px;
+    height: 450px;
+}
+.top button
+{
+    border-radius: 5px;
+    color: white;
+    font-size: bolder;
+    background: #3da9fc;
+    border: 2px solid white;
+    /* background-color: #3da9fc; */
+    width: 80%;
+    height: 12%;
+
+}
+
+/* .top  button
+{
+    margin-top: 19px;
+    width: 70%;
+    height: 15%;
+    border-radius: 5px;
+    gap: 20px;
+    color: #010101;
+    border: 2px solid black;
+    /* background: #7f5af0; 
+    color: #fffffe;
+    font-weight: bold;
+}  */
+
+.left .cols .result
+{
+    border-radius:5px ;
+   
+    border: 1px solid whitesmoke;
+    background-color: #e53170;
+}
