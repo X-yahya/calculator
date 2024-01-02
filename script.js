@@ -6,46 +6,59 @@ const subs = document.querySelector("#subs") ;
 const mult = document.querySelector("#mult") ; 
 const div = document.querySelector("#divi") ; 
 const disp = document.querySelector("p") ; 
-const result = document.querySelector(".result") ; 
+const result = document.querySelector(".result") ;
+const oppres = document.querySelector(".oppres") ; 
+const clear = document.querySelector(".clear") ;
 let user_input='' ;
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        // Check if there are already two numbers and an operation
+        console.log(user_input.split(' '))
+        if (user_input.split(' ').length < 4) {
+            user_input += `${number.value}`;
+            disp.innerHTML = user_input;
+        }
+    });
+});
 
-let temp = [] ; 
-numbers.forEach((number)=>{
-   
-    number.addEventListener("click" ,
-    ()=>
-    {
-        user_input+=number.value ; 
-        disp.innerHTML=user_input;
-         
-        
+opps.forEach((opp) => {
+    opp.addEventListener("click", () => {
+        // Check if there are already two numbers and an operation
+        if (user_input.split(' ').length < 3) {
+            user_input += ` ${opp.value} `;
+            disp.innerHTML = user_input;
+        }
+    });
+});
+
+result.addEventListener("click", () => {
+    const x = user_input.split(' ');
+    oppres.style.color = "gray";
+
+    if (x.length === 3) {
+        // Perform the calculation only if there are two numbers and an operation
+        if (x[1] === '+') {
+            let tempo = adds(parseFloat(x[0]), parseFloat(x[2]));
+            displayres(tempo);
+            user_input = tempo.toString(); // Convert the result to a string
+            
+        } else if (x[1] === 'x') {
+            let tempo = multip(parseFloat(x[0]), parseFloat(x[2]));
+            displayres(tempo);
+            user_input = tempo.toString();
+        } else if (x[1] === '-') {
+            let tempo = subst(parseFloat(x[0]), parseFloat(x[2]));
+            displayres(tempo);
+            user_input = tempo.toString();
+        } else {
+            let tempo = division(parseFloat(x[0]), parseFloat(x[2]));
+            displayres(tempo);
+            user_input = tempo.toString();
+        }
     }
-    )
-}    
-)
+});
 
 
-
-opps.forEach((opp)=>
-{
-    opp.addEventListener("click" , ()=>
-    {
-        user_input+=opp.value ; 
-        disp.innerHTML=user_input;
-        // test() ; 
-    // console.log(temp) ; 
-})
-})  
-
-function x(user_input)
-{
-    let num1 = user_input.substring(0,indexOf(opp.value)-1);
-    let num2 = 0 ;
-    
-    console.log(num1) ; 
-}
-
-x(user_input) ; 
 function division(x,y)
 {
     return x/y ; 
@@ -62,24 +75,27 @@ function adds(x,y)
 {
     return x+y ; 
 }
-/*
-function test()
+
+function displayres(res)
 {
-let j = 0 ; 
-for (let i=0 ; i<user_input.length;++i)
+    // const para = document.createElement("p") ; 
+    // para.textContent = res ; 
+    // para.classList.add = "oppres" ; 
+    // disp.appendChild(para) ; 
+    oppres.innerHTML = res ; 
+}
+
+function resetdisplay(x,y)
+{   
+    x.innerHTML = "0" ; 
+    y.innerHTML = "" ;
+    user_input = ""
+ 
+}
+
+clear.addEventListener("click" , ()=>
 {
-    if((user_input[i]=='+')||(user_input[i]=='-')
-    ||(user_input[i]=='/')||(user_input[i]=='x'))
-    {
-        temp[j] = i ; 
-        j+=1 ; 
-    }
-}
-}
-*/
-
-
-result.addEventListener("click" , ()=>{console.log(temp);})
-
-
+    const aux = document.querySelector(".oppres") ;
+    resetdisplay(disp,aux) ;
+})
 
