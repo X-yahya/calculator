@@ -1,21 +1,17 @@
-const numbers  = document.querySelectorAll(".number") ; 
-const display = document.querySelector(".display") ;
-const opps = document.querySelectorAll(".opp"); 
-const add = document.querySelector("#add") ; 
-const subs = document.querySelector("#subs") ; 
-const mult = document.querySelector("#mult") ; 
-const div = document.querySelector("#divi") ; 
-const disp = document.querySelector("p") ; 
-const result = document.querySelector(".result") ;
-const oppres = document.querySelector(".oppres") ; 
-const clear = document.querySelector(".clear") ;
-const deleteBttn = document.querySelector(".delete") ;
-let user_input='' ;
+const numbers = document.querySelectorAll(".number");
+const display = document.querySelector(".display");
+const opps = document.querySelectorAll(".opp");
+const disp = document.querySelector("p");
+const result = document.querySelector(".result");
+const oppres = document.querySelector(".oppres");
+const clear = document.querySelector(".clear");
+const deleteBttn = document.querySelector(".delete");
+let user_input = '';
+
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
-        
-        console.log(user_input.split(' '))
-        if (user_input.split(' ').length < 4) {
+        const filterarr = user_input.split(' ').filter(item => item !== "");
+        if (filterarr.length < 4) {
             user_input += `${number.value}`;
             disp.innerHTML = user_input;
         }
@@ -24,12 +20,13 @@ numbers.forEach((number) => {
 
 opps.forEach((opp) => {
     opp.addEventListener("click", () => {
-        if (user_input.split(' ').length < 3) {
+        if (user_input.split(' ').length < 4) {
             user_input += ` ${opp.value} `;
             disp.innerHTML = user_input;
         }
     });
 });
+
 deleteBttn.addEventListener("click", () => {
     if (user_input === "0" && user_input.length === 1) {
         return;
@@ -41,16 +38,13 @@ deleteBttn.addEventListener("click", () => {
 });
 
 result.addEventListener("click", () => {
-    const x = user_input.split(' ');
-    oppres.style.color = "gray";
+    const x = user_input.split(' ').filter(item => item !== "");
 
-    if (x.length === 3) {
-        // Perform the calculation only if there are two numbers and an operation
+    if (x.length < 4) {
         if (x[1] === '+') {
             let tempo = adds(parseFloat(x[0]), parseFloat(x[2]));
             displayres(tempo);
-            user_input = tempo.toString(); // Convert the result to a string
-            
+            user_input = tempo.toString();
         } else if (x[1] === 'x') {
             let tempo = multip(parseFloat(x[0]), parseFloat(x[2]));
             displayres(tempo);
@@ -59,52 +53,44 @@ result.addEventListener("click", () => {
             let tempo = subst(parseFloat(x[0]), parseFloat(x[2]));
             displayres(tempo);
             user_input = tempo.toString();
-        } else {
+        } else if (x[1] === '/' && parseFloat(x[2]) !== 0) {
             let tempo = division(parseFloat(x[0]), parseFloat(x[2]));
             displayres(tempo);
             user_input = tempo.toString();
+        } else {
+            // Handle division by zero scenario or other errors
+            console.error("Invalid operation");
         }
     }
 });
 
-
-function division(x,y)
-{
-    return x/y ; 
-}
-function multip(x,y)
-{
-    return x*y ; 
-}
-function subst(x,y)
-{
-    return x-y
-}
-function adds(x,y)
-{
-    return x+y ; 
+function division(x, y) {
+    return x / y;
 }
 
-function displayres(res)
-{
-    // const para = document.createElement("p") ; 
-    // para.textContent = res ; 
-    // para.classList.add = "oppres" ; 
-    // disp.appendChild(para) ; 
-    oppres.innerHTML = res ; 
+function multip(x, y) {
+    return x * y;
 }
 
-function resetdisplay(x,y)
-{   
-    x.innerHTML = "0" ; 
-    y.innerHTML = "" ;
-    user_input = ""
- 
+function subst(x, y) {
+    return x - y;
 }
 
-clear.addEventListener("click" , ()=>
-{
-    const aux = document.querySelector(".oppres") ;
-    resetdisplay(disp,aux) ;
-})
+function adds(x, y) {
+    return x + y;
+}
 
+function displayres(res) {
+    oppres.innerHTML = res;
+}
+
+function resetdisplay(x, y) {
+    x.innerHTML = "0";
+    y.innerHTML = "";
+    user_input = "";
+}
+
+clear.addEventListener("click", () => {
+    const aux = document.querySelector(".oppres");
+    resetdisplay(disp, aux);
+});
