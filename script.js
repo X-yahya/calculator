@@ -9,6 +9,7 @@ const disp = document.querySelector("p") ;
 const result = document.querySelector(".result") ;
 const oppres = document.querySelector(".oppres") ; 
 const clear = document.querySelector(".clear") ;
+const deleteBttn = document.querySelector(".delete") ;
 let user_input='' ;
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
@@ -28,6 +29,15 @@ opps.forEach((opp) => {
             disp.innerHTML = user_input;
         }
     });
+});
+deleteBttn.addEventListener("click", () => {
+    if (user_input === "0" && user_input.length === 1) {
+        return;
+    } else {
+        let slicedNDiced = user_input.slice(0, -1);
+        disp.innerHTML = slicedNDiced;
+        user_input = slicedNDiced;
+    }
 });
 
 result.addEventListener("click", () => {
