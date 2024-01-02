@@ -12,7 +12,7 @@ const clear = document.querySelector(".clear") ;
 let user_input='' ;
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
-        // Check if there are already two numbers and an operation
+        
         console.log(user_input.split(' '))
         if (user_input.split(' ').length < 4) {
             user_input += `${number.value}`;
@@ -23,7 +23,6 @@ numbers.forEach((number) => {
 
 opps.forEach((opp) => {
     opp.addEventListener("click", () => {
-        // Check if there are already two numbers and an operation
         if (user_input.split(' ').length < 3) {
             user_input += ` ${opp.value} `;
             disp.innerHTML = user_input;
