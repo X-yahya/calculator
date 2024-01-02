@@ -58,7 +58,7 @@ result.addEventListener("click", () => {
             displayres(tempo);
             user_input = tempo.toString();
         } else {
-            // Handle division by zero scenario or other errors
+            
             console.error("Invalid operation");
         }
     }
