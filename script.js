@@ -53,12 +53,16 @@ result.addEventListener("click", () => {
             let tempo = subst(parseFloat(x[0]), parseFloat(x[2]));
             displayres(tempo);
             user_input = tempo.toString();
-        } else if (x[1] === '/' && parseFloat(x[2]) !== 0) {
+        } else if (x[1] === '/') {
+            if (parseFloat(x[2]) === 0) {
+                displayres("Error: Cannot divide by zero");
+                resetdisplay(disp,disp);
+                return;
+            }
             let tempo = division(parseFloat(x[0]), parseFloat(x[2]));
             displayres(tempo);
             user_input = tempo.toString();
         } else {
-            
             console.error("Invalid operation");
         }
     }
